@@ -19,11 +19,16 @@ const Navbar = () => {
                 <li className="nav-item">
                 <a className="nav-link" href="/alldepartments">Thông tin Khoa</a>
                 </li>
+                <li className="nav-item">
+                <a className="nav-link" href="/courses">Danh sách môn học</a>
+                </li>
+                <li className="nav-item">
+                <a className="nav-link" href="/register">Đăng kí môn học HK232</a>
+                </li>
+                <li className="nav-item">
+                <a className="nav-link" href="/class/232">Danh sách lớp HK232</a>
+                </li>
             </ul>
-            <form className="d-flex" role="search">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
             </div>
         </div>
         </nav>

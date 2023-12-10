@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import Add from '../comp/addLecturer'
+import Update from '../comp/updateLecturer'
 
 const Lecturers = () => {
     const [lecturers, setLecturers] = useState([])
     const [modal, setModal] = useState(false)
+
+    const [updateModal, setUpdateModal] = useState(false)
+    const [updateLecturer, setUpdateLecturer] = useState(null)
+
+    const handleUpdateConfirm = () => {
+        setUpdateModal(false);
+      };
+  
+      const handleUpdateClose = () => {
+        setUpdateModal(false);
+      }
+
     useEffect(() =>{
         const fetchAllLecturers = async () => {
             try {
@@ -83,7 +96,7 @@ const Lecturers = () => {
                             {lecturer.department_name}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info">M</button>
+                            <button type="button" class="btn btn-info" onClick={() => {setUpdateModal(true); setUpdateLecturer(lecturer)}}>M</button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" onClick={() => handleDelete(lecturer.lecturer_id)}>X</button>
@@ -93,6 +106,7 @@ const Lecturers = () => {
               </tbody>
             </table>
             {modal && <Add onConfirm ={handleConfirmModal} onClose={handleCloseModal}/>}
+            {updateModal && <Update onConfirm ={handleUpdateConfirm} onClose={handleUpdateClose} lecturerProp = {updateLecturer}/>}
         </div>
     )
 }

@@ -80,10 +80,6 @@ const Add = ({onConfirm, onClose}) => {
                         <option>Postgraduate</option>
                     </select>
                 </div>
-                {/* <div className="mb-3">
-                    <label  className="form-label">Loại</label>
-                    <input type="text" name='student_type' className="form-control" onChange={handleChange}/>
-                </div> */}
                 <div className="mb-3">
                     <label  className="form-label">Số tín chỉ để tốt nghiệp</label>
                     <input type="number" name='no_credits' className="form-control" onChange={handleChange}/>

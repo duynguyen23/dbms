@@ -4,6 +4,7 @@ import '../pages/style.css'
 import axios from 'axios'
 
 
+
 const Update = ({onConfirm, onClose, studentProp}) => {
 
 
@@ -24,6 +25,7 @@ const Update = ({onConfirm, onClose, studentProp}) => {
     const handleChange = (e) =>{
         setStudents(prev => ({...prev, [e.target.name]: e.target.value}))
     }
+    
 
     const handleClick = async e => {
         e.preventDefault()

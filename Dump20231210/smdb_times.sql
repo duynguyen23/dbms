@@ -1,0 +1,58 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for macos13 (x86_64)
+--
+-- Host: localhost    Database: smdb
+-- ------------------------------------------------------
+-- Server version	8.0.35
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `times`
+--
+
+DROP TABLE IF EXISTS `times`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `times` (
+  `course_id` varchar(50) NOT NULL,
+  `semester_id` int NOT NULL,
+  `group_id` varchar(50) NOT NULL,
+  `time_week` int NOT NULL,
+  `time_day` int NOT NULL,
+  `time_start` time NOT NULL,
+  `time_end` time NOT NULL,
+  PRIMARY KEY (`course_id`,`semester_id`,`group_id`,`time_week`,`time_day`,`time_start`,`time_end`),
+  CONSTRAINT `times_fk_class` FOREIGN KEY (`course_id`, `semester_id`, `group_id`) REFERENCES `classes` (`course_id`, `semester_id`, `group_id`),
+  CONSTRAINT `check_time` CHECK (((`time_start` < `time_end`) and (`time_day` >= 2) and (`time_day` <= 8)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `times`
+--
+
+LOCK TABLES `times` WRITE;
+/*!40000 ALTER TABLE `times` DISABLE KEYS */;
+INSERT INTO `times` VALUES ('CE1002',231,'CC02',40,2,'07:00:00','09:00:00'),('CE1002',231,'CC02',41,2,'07:00:00','09:00:00'),('CE1002',231,'CC02',42,2,'07:00:00','09:00:00'),('CE1002',231,'CC02',43,2,'07:00:00','09:00:00'),('CE1002',231,'CC02',44,2,'07:00:00','09:00:00'),('CE1002',231,'CC02',45,2,'07:00:00','09:00:00'),('CE1002',231,'CC02',46,2,'07:00:00','09:00:00'),('CE1002',232,'CC01',1,2,'07:00:00','09:00:00'),('CE1002',232,'CC01',2,2,'07:00:00','09:00:00'),('CE1002',232,'CC01',3,2,'07:00:00','09:00:00'),('CE1002',232,'CC01',4,2,'07:00:00','09:00:00'),('CE1002',232,'CC01',5,2,'07:00:00','09:00:00'),('CE1002',232,'CC01',6,2,'07:00:00','09:00:00'),('CO1023',221,'CC01',40,3,'12:00:00','14:00:00'),('CO1023',221,'CC01',41,3,'12:00:00','14:00:00'),('CO1023',221,'CC01',42,3,'12:00:00','14:00:00'),('CO1023',221,'CC01',43,3,'12:00:00','14:00:00'),('CO1023',221,'CC01',44,3,'12:00:00','14:00:00'),('CO1023',221,'CC01',45,3,'12:00:00','14:00:00'),('CO1023',221,'CC02',40,3,'15:00:00','17:00:00'),('CO1023',221,'CC02',41,3,'15:00:00','17:00:00'),('CO1023',221,'CC02',42,3,'15:00:00','17:00:00'),('CO1023',221,'CC02',43,3,'15:00:00','17:00:00'),('CO1023',221,'CC02',44,3,'15:00:00','17:00:00'),('CO1023',221,'CC02',45,3,'15:00:00','17:00:00'),('CO1023',221,'CC03',40,3,'09:00:00','11:00:00'),('CO1023',221,'CC03',41,3,'09:00:00','11:00:00'),('CO1023',221,'CC03',42,3,'09:00:00','11:00:00'),('CO1023',221,'CC03',43,3,'09:00:00','11:00:00'),('CO1023',221,'CC03',44,3,'09:00:00','11:00:00'),('CO1023',221,'CC03',45,3,'09:00:00','11:00:00'),('CO2001',212,'CC01',40,3,'12:00:00','14:00:00'),('CO2001',212,'CC01',41,3,'12:00:00','14:00:00'),('CO2001',212,'CC01',42,3,'12:00:00','14:00:00'),('CO2001',212,'CC01',43,3,'12:00:00','14:00:00'),('CO2001',212,'CC01',44,3,'12:00:00','14:00:00'),('CO2001',212,'CC01',45,3,'12:00:00','15:00:00'),('CO3002',231,'CC01',40,5,'12:00:00','15:00:00'),('CO3002',231,'CC01',41,5,'12:00:00','15:00:00'),('CO3002',231,'CC01',42,5,'12:00:00','15:00:00'),('CO3002',231,'CC01',43,5,'12:00:00','15:00:00'),('CO3002',231,'CC01',44,5,'12:00:00','15:00:00'),('CO3002',231,'CC01',45,5,'12:00:00','15:00:00'),('MT1001',211,'CC03',40,6,'07:00:00','10:00:00'),('MT1001',211,'CC03',41,6,'07:00:00','10:00:00'),('MT1001',211,'CC03',42,6,'07:00:00','10:00:00'),('MT1001',211,'CC03',43,6,'07:00:00','10:00:00'),('MT1001',211,'CC03',44,6,'07:00:00','10:00:00'),('MT1001',211,'CC03',45,6,'07:00:00','10:00:00');
+/*!40000 ALTER TABLE `times` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-12-10 15:05:51

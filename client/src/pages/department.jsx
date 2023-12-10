@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react"
 import Add from '../comp/addDepartment.jsx'
 import axios from 'axios'
+import Update from '../comp/updateDepartment.jsx'
 import './style.css'
 
 const Departments = () => {
     const [deparments, setDepartments] = useState([])
     const [modal, setModal] = useState(false)
+    const [updateModal, setUpdateModal] = useState(false)
+    const [updateDepartment, setUpdateDepartment] = useState(null)
 
     useEffect(() =>{
         const fetchAllDepartments = async () => {
@@ -26,6 +29,15 @@ const Departments = () => {
       const handleConfirmModal = () => {
         setModal(false);
       }
+
+      const handleUpdateConfirm = () => {
+        setUpdateModal(false);
+      };
+  
+      const handleUpdateClose = () => {
+        setUpdateModal(false);
+      }
+      
     const handleDelete = async (id) => {
         try{
             await axios.delete(`http://localhost:8800/department/${id}`)
@@ -76,7 +88,7 @@ const Departments = () => {
                             {department.lecturer_name}
                         </td>
                         <td>
-                            <button type="button" class="btn btn-info">M</button>
+                            <button type="button" class="btn btn-info" onClick={() => {setUpdateModal(true); setUpdateDepartment(department)}}>M</button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" onClick={() => handleDelete(department.department_id)}>X</button>
@@ -86,6 +98,7 @@ const Departments = () => {
               </tbody>
             </table>
             {modal && <Add onConfirm ={handleConfirmModal} onClose={handleCloseModal}/>}
+            {updateModal && <Update onConfirm ={handleUpdateConfirm} onClose={handleUpdateClose} departmentProp = {updateDepartment}/>}
         </div>
     )
 }
